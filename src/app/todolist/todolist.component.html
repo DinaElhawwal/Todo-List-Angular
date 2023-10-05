@@ -1,0 +1,52 @@
+
+<body>
+
+<div class="container" ></div>
+<div class="form" >
+
+   
+   
+    <br>
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-text">
+            <label for="task"><b>Task Description</b></label>
+            <input type="text" class="form-control" id="task" placeholder="Enter Task Description " ngModel name="task" required>
+            <label for="taskid"><b>Task Id</b></label>
+            <input type="num" class="form-control" id="taskid" placeholder="task id " ngModel name="taskid" required>
+            <label for="Due date"><b>Due Date</b></label>
+            <input type="date" class="form-control" id="date" placeholder="Due date " ngModel name="date" required>
+
+            
+            <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-danger">Required
+                field</small>
+        </div>
+
+        <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-success" >Submit</button>
+    </form>
+
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Id</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of taskArray; index as i">
+                <td>{{t.taskName}}</td>
+                <td>{{t. taskid}}</td>
+                <td>{{t.duedate}}</td>
+                <td><input (change)="onCheck(i)" id="myCheckbox" type="checkbox"></td>
+                <td><button class="btn btn-success btn-sm" (click)="onDelete(i)">Delete</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
